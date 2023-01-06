@@ -1,0 +1,64 @@
+<!-- -En bootstrap	Implementa una aplicación que permita cargar dos valores numéricos y mediante un control select indicar si queremos sumar, restar, multiplicar o sectionidir. Actualiza el resultado inmediatamente cuando se seleccione la operación del control select. Utiliza directivas estructurales para el desarrollo de la aplicación.
+-	El resultado de cada operación debe tener un color de fuente distinto. Utiliza directivas de atributo (ngStyle) para modificar el color del texto.
+-	Si el usuario no selecciona ninguna opción, tendremos el siguiente resultado: -->
+
+<section class="container py-4">
+  <form class="form-group">
+    <section class="form-group mt-2">
+      <label for="num1">Número 1</label>
+      <input
+        type="number"
+        class="form-control"
+        id="num1"
+        name="num1"
+        [(ngModel)]="num1"
+        #ctrl="ngModel"
+      />
+    </section>
+    <section class="form-group mt-2">
+      <label for="num2">Número 2</label>
+      <input
+        type="number"
+        class="form-control"
+        id="num2"
+        name="num2"
+        [(ngModel)]="num2"
+      />
+    </section>
+    <section class="form-group mt-2">
+      <label for="operacion">Operación</label>
+      <!-- pedir elegir operacion -->
+      <select
+        class="form-control"
+        id="operacion"
+        name="operacion"
+        [(ngModel)]="operacion"
+      >
+        <option value="">Elelija una operación</option>
+        <option value="sumar">Sumar</option>
+        <option value="restar">Restar</option>
+        <option value="multiplicar">Multiplicar</option>
+        <option value="dividir">Dividir</option>
+      </select>
+    </section>
+    <section class="form-group mt-2">
+      <button type="button" class="btn btn-primary" (click)="calcular()">
+        Calcular
+      </button>
+    </section>
+    <!-- si los campos estan vacios o no se selecciono una opcion no se muestra nada -->
+
+    <section class="form-group mt-2">
+      <section for="resultado" *ngIf="validacion">
+        <p [ngStyle]="{ color: colorRes }">
+          Resultado: {{resultado}}
+        </p>
+      </section>
+      <section for="resultado" *ngIf="!validacion">
+        <p>
+          Resultado: <span style="color: red">No elijio operación</span>
+        </p>
+      </section>
+    </section>
+  </form>
+</section>
